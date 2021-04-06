@@ -1,7 +1,11 @@
+using GameInventoryBackend.Data;
+using GameInventoryBackend.Services;
+using GameInventoryBackend.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,7 +30,8 @@ namespace GameInventoryBackend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IGameService, GameService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
