@@ -1,9 +1,6 @@
 ﻿using GameInventoryBackend.Models;
 using GameInventoryBackend.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GameInventoryBackend.Controllers
@@ -37,6 +34,12 @@ namespace GameInventoryBackend.Controllers
             await _gameService.AddGame(newGame);
 
             return StatusCode(201);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveById(int id)
+        {
+            return Ok(await _gameService.RemoveGameById(id));
         }
     }
 }

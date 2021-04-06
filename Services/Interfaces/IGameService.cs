@@ -6,8 +6,9 @@ namespace GameInventoryBackend.Services.Interfaces
 {
     public interface IGameService
     {
-        Task<Game> GetGameById(int id);
-        Task<List<Game>> GetAllGames();
-        Task AddGame(Game newGame);
+        Task<ServiceResponse<Game>> GetGameById(int id);
+        Task<ServiceResponse<List<Game>>> GetAllGames();
+        Task<ServiceResponse<Game>> AddGame(Game newGame);
+        Task<ServiceResponse<Game>> RemoveGameById(int id);
     }
 }
